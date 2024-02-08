@@ -10,47 +10,34 @@
 Программа должна вывести одно число - минимальное количество лодок, 
 необходимое для переправки всех рыбаков на противоположный берег.
 
-
-
-if fisfmans % max_fishman == 1:
-	boat_need += (fisfmans // max_fishman ) + 1
-else:
-	boat_need += (fisfmans // max_fishman)	 
-
-
-
-
-11 / 2 = 5 + 1
-10 / 2 = 5
-9 / 2 = 4 + 1 
-
-
 """
 
+
+
+
 boat_max = int(input("Введите максимальную массу, которую может выдержать одна лодка: "))
-fisfmans = int(input("Введите количество рыбаков: "))
-max_fishman = 2 
+fishmans = int(input("Введите количество рыбаков: "))
 
+fish_list = []
 
+while fishmans > 0:
+    fishman_massa = int(input("Введите вес рыбака: ")) 
+    fish_list.append(fishman_massa) 
+    fishmans -= 1  
 boat_need = 0
 
-while fisfmans > 0: 
-	massa = int(input())
-	fisfmans -= 1
-	if (boat_max / 2) >= massa:
-		
-		boat_need += 0.5
-	else:
-		if massa > boat_max:
-			print("Извините лодка вас не выдержит!")
-		else:
-			boat_need += 1
+for massa in fish_list:
+    if (boat_max / 2) >=  massa:
+        boat_need += 1
+    else:
+        if massa > boat_max:
+            print("Извините, но для вас нужен целый корабль!")
+        else:
+            boat_need += 2
 
-if boat_need % 10 == 0:
-	print(boat_need)
-else:
-	print(boat_need + 0.5 )
+if fishmans % 2 != 0:
+    boat_need += 1
 
+boat_need //= 2
 
-
-
+print("Минимальное количество лодок, необходимое для переправки всех рыбаков:", boat_need)
